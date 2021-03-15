@@ -1,183 +1,128 @@
-const element = {
-  tagName: 'div',
-  classList: 'container',
-};
 
-const element2 = {
-  tagName: 'h1',
-  id: 'main-title',
-  textContent: 'Title'
-};
+// const container = {
+//   tagName: 'div',
+//   classList: ['container'] 
+// };
 
-element2.parent = element;
+// const title = {
+//   tagName: 'h2',
+//   id: 'main-title',
+//   text: 'Title'
+// };
 
-element.child = element2;
+// container.child = title;
+
+// title.parent = container;
+
+// const body = {
+//   children: [container]
+// };
 
 
 
+// const title = document.querySelector('.title');
 
+// console.log('%c 🍢 title: ', 'font-size:20px;background-color: #EA7E5C;color:#fff;', title);
 
-
-// const title = document.querySelector('#main-title');
-// const title = document.getElementById('main-title');
 
 // const index = title.querySelector('.index');
-// if (index) {
-//   index.innerText = 1111;
-// }
+// console.log('%c 🥐 index: ', 'font-size:20px;background-color: #F5CE50;color:#fff;', index);
 
 
+const titles = document.querySelectorAll('h2');
 
 
-const titles = document.querySelectorAll('.title');
-
-// titles.forEach((title, index) => {
-//   title.innerText = 'hello ' + (index + 1);
-// });
-// console.log('titles: ', titles);
-
+// titles.forEach(item => {
+//   item.style.background = 'red';
+// })
 
 const titles2 = document.getElementsByClassName('title');
 
-[...titles2].forEach((title, index) => {
-  title.innerText = 'hello ' + (index + 1);
-});
-// console.log('titles2: ', titles2);
+
+// [...titles2].forEach(item => {
+//   item.style.background = 'red';
+// })
 
 
-// const link = document.querySelector('.link');
-
-// link.href = 'facebook';
 
 
-// console.log('nameInput: ', nameInput.value);
 
-// nameInput.value = 'vlad';
 
-const users = ['Rachel Green', 'Monica Geller', 'Phoebe Buffay'];
 
-users.forEach((user, index) => {
-  const userList = document.querySelector('.user-list');
-  userList.innerHTML += `
-    <p data-user-id="${index}">${user}</p>
-  `;
+const input = document.querySelector('.user-input');
+const users = document.querySelector('.users');
+
+// input.value = 'Oleg'
+
+const usersList = ['Oleg', 'Oleksii'];
+
+usersList.forEach((user, index) => {
+  addUserOld(user, index);
 })
 
-function addUser() {
-  const nameInput =  document.querySelector('#name-input');
-
-  if (!nameInput.value) {
-    nameInput.classList.add('invalid');
-    return;
-  } else {
-    nameInput.classList.remove('invalid');
-  }
-
-
-  const userList = document.querySelector('.user-list');
-  userList.innerHTML += `
-    <p>${nameInput.value}</p>
-  `;
-  nameInput.value = '';
+function addUserOld(user = input.value, id) {
+  users.insertAdjacentHTML('afterbegin', `
+    <p class="user" data-id="${id}">${user}</p>
+  `)
+  input.value = '';
 }
 
-// function toggleClass() {
-//   const nameInput =  document.querySelector('#name-input');
-//   nameInput.classList.toggle('invalid');
-// }
-
-
-// const userList = document.querySelector('.user-list');
-
-// console.log(userList.removeAttribute('custom-attr'));
-// console.log(userList.attributes);
 
 
 
-// const userList = document.querySelector('.user-list');
+function addUser() {
+  input.classList.toggle('invalid');
+  // if (!input.value) {
+  //   input.classList.add('invalid');
+  //   return;
+  // } else if (input.classList.contains('invalid')) {
+  //   console.log('invalid was present');
+  //   input.classList.remove('invalid');
+  // }
 
-// userList.className += ' new-class';
+  users.insertAdjacentHTML('afterbegin', `
+    <p class="user">${input.value}</p>
+  `)
+  input.value = '';
+}
+
+
+
+// const select = document.querySelector('select');
+// console.dir(select);
+// select.value
+// console.log('%c 🍏 select.value: ', 'font-size:20px;background-color: #33A5FF;color:#fff;', select.value);
+// console.log('%c 🍪 select: ', 'font-size:20px;background-color: #2EAFB0;color:#fff;', select);
 
 
 
 
+const title = document.querySelector('.title');
 
 
 function changeFontSize(increase) {
-  const title = document.getElementById('main-title');
+  let currentSize = parseInt(getComputedStyle(title).fontSize);
 
-  const currentFontSize = getComputedStyle(title).fontSize;
 
-  const newValue = parseInt(currentFontSize) + (increase ? 1 : -1);
-
-  title.style.fontSize = newValue + 'px';
+  increase ? currentSize++ : currentSize--;
+  title.style.fontSize = currentSize + 'px';
 }
 
 
-const title = document.getElementById('main-title');
 
-// title.style.color = 'red';
-// title.style.background = 'red';
-title.style.cssText += 'color: red !important;'
-// console.log('title.cssText: ', title.style.cssText);
+const usersElement = document.querySelector('.users');
 
+// usersElement.remove();
 
-// title.outerHTML = '';
-
-title.remove();
-
-// console.log(title);
-
-// document.body.replaceWith(title);
-
-const lastTitle = document.createElement('h1');
-lastTitle.classList.add('hehe');
-lastTitle.innerText = 'last title';
+// document.body.replaceWith(usersElement);
 
 
-// document.body.innerHTML += `<h1>one more title</h1>`;
+const h1 = document.createElement('h1');
 
-// document.body.append(lastTitle);
-document.body.insertAdjacentHTML('afterbegin', '<h1>one more title</h1>');
+h1.innerHTML = '<i>hello</i>';
 
-
-let styles = `
-  <style>
-    .user-list {
-      border: 2px solid yellow;
-    }
-  </style>
-`;
+document.body.append(h1);
 
 
-document.body.innerHTML += styles;
-
-
-
-const nameInput =  document.querySelector('#name-input');
-
-function onChange(val) {
-  console.log('val: ', val.key, Date.now());
-}
-
-nameInput.addEventListener('keyup', debounce(onChange, 1000));
-
-
-function debounce(fn, tm) {
-  let lastCall = Date.now();
-  let timeId;
-  function test(...args) {
-    if (Date.now() - lastCall >= tm) {
-      console.log('call');
-      fn(...args);
-    } else {
-      console.log('delay');
-      if (timeId) clearTimeout(timeId);
-      timeId = setTimeout(test, tm, ...args);
-    }
-    lastCall = Date.now();
-  }
-  return test;
-}
-
-
+const h2 = `<h1><i>hello</i></h1>`;
+document.body.insertAdjacentHTML('beforeend', h2);

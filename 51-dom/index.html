@@ -7,38 +7,42 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- hello -->
+  
   <div class="container">
-    <h1 class="title" id="main-title">
-      Title <span class="index">1</span>
-    </h1>
-    <button onclick="changeFontSize(true)">+</button>
-    <button onclick="changeFontSize(false)">-</button>
-    <!-- <h1 class="title">Title 2</h1>
-    <h1 class="title">Title 3</h1>
-    <h1 class="title">Title 4</h1> -->
+    <h2 id="main-title" class="title">
+      Title
+    </h2>
+    <div>
+      <button onclick="changeFontSize(true)">+</button>
+      <button onclick="changeFontSize(false)">-</button>
+    </div>
+    <!-- <h2 class="title">
+      Title 
+      <span class="index">2</span>
+    </h2>
+    <h2 class="title">
+      Title 
+      <span class="index">3</span>
+    </h2> -->
   </div>
-
-  <!-- <div>
-    <a class="link" href="http://google.com">link</a>
-  </div> -->
 
   <div>
-    <input type="text" id="name-input">
-    <button onclick="addUser()">add user</button>
-    <!-- <button onclick="toggleClass()">toggle</button> -->
+    <input class="user-input" type="text" value="Ivan">
+    <button type="button" onclick="addUser()">add</button>
   </div>
 
-  <div class="user-list" data-test="hello">
+  <div class="users">
+
   </div>
+
+  <!-- <select>
+    <option>Пункт 1</option>
+    <option>Пункт 2</option>
+  </select> -->
 
   <style>
     .invalid {
-      border: 2px solid red;
-    }
-
-    #main-title {
-      color: blue !important;
+      border: 1px solid red;
     }
   </style>
 
