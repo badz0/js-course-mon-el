@@ -1,219 +1,282 @@
-const date = new Date(2000, 0, 1, 1, 1);
+// const date = new Date();
+// console.log('%c 🥥 date: ', 'font-size:20px;background-color: #93C0A4;color:#fff;', date);
+// console.log(+date);
+// // timestamp 
+// // (y, m, d, h, m, s, ms)
+// const date2 = new Date(2020, 0, 1, 1, 1, 1);
+// console.log('%c 🍏 date2: ', 'font-size:20px;background-color: #42b983;color:#fff;', date2);
 
-date.setMonth(11);
-date.setFullYear(1999);
-// console.log('date: ', date);
+// console.log(Date.now());
+// console.log(new Date().getTime());
 
+// // ISO 'YYYY-MM-DDTHH:mm:ss:sss'
 
-const date2 = new Date('2222-5-01');
-// console.log('date2: ', 
-//   date2.toLocaleString('ua', {year: '2-digit'}) + ' ' +
-//   date2.toLocaleString('ua', {
-//     month: 'long',
-//   })
-// );
+// const date3 = new Date('2000-12');
 
-function isAdult(date) {
-  const adultDate = new Date();
+// date3.setFullYear(1999);
 
-  adultDate.setFullYear(adultDate.getFullYear() - 18);
+// console.log(date3.getFullYear());
 
-  return adultDate > Date.parse(date);
-}
-
-// console.log(isAdult('2005-10-10'));
-// console.log(Date.now() - Date.parse('2000-01-01'));
-// YYYY-MM-DDTHH:mm:ss.sss
+// console.log(date3.toLocaleString('ua', {
+//   year: 'numeric',
+//   month: 'short'
+// }));
 
 
 
+// function isAdult(birthDate) {
+//   const tresholdDate = new Date();
+//   tresholdDate.setFullYear(tresholdDate.getFullYear() - 18);
+//   return tresholdDate > Date.parse(birthDate);
+// }
 
-function hello(msg) {
-  console.log('hey' + msg);
-}
+// console.log(isAdult('2015-08-22'));
 
 
 
-// const intervalId = setInterval(() => {
-//   hello('whats up')
-// }, 1000);
+// function hey(msg) {
+//   console.log('hey', msg);
+// }
 
-// const timeoutId = setTimeout(() => {
-//   console.log('stopped');
+// setTimeout(hey, 2000);
+// const intervalId = setInterval(hey, 1000, 'cursor');
+
+
+// setTimeout(() => {
 //   clearInterval(intervalId);
 // }, 5000);
 
 
+// console.log(1);
+
 // setTimeout(() => {
-  // console.log('hey');
-// }, 0);
-
-// console.log('yo');
+//   console.log(2);
+// }, 0)
 
 
-// function hello(msg) {
-//   console.log('hey' + msg);
-// }
-
-// const yoWrap = () => hello('yo')
-
-// document.addEventListener('click', yoWrap);
-// document.removeEventListener('click', yoWrap);
-
-
-function doPushups(n, onFinish) {
-  setTimeout(() => {
-    console.log('pushups done');
-    onFinish();
-  }, n * 500);
-}
-
-// doPushups(5, () => {
-//   console.log('yes, lets do some more');
-//   doPushups(6, () => {
-//     console.log('good job');
-//     doPushups(6, () => {
-//       console.log('good job');
-//       doPushups(6, () => {
-//         console.log('good job');
-//       });
-//     });
-//   });
-// });
-
-const ivan = {
-  name: 'ivan',
-  pushupTime: 300
-};
-
-const guest = {
-  name: 'guest',
-  pushupTime: 800
-};
-
-function doPromisePushups(n, user) {
-  if (n < 0) {
-    return Promise.reject('sorry wrong input');
-  }
-  if (n === 0) {
-    return Promise.resolve('well done 0 is pretty easy to do');
-  }
-  return new Promise((resolve, reject) => {
-    if (n > 100) {
-      reject('sorry too many for you');
-    } else {
-      setTimeout(() => {
-        console.log('pushups done');
-        resolve(user);
-      }, n * user.pushupTime);
-    }
-  });
-}
-
-function hey() {
-  console.log('hey');
-}
-
-// Promise.all([doPromisePushups(5, ivan), doPromisePushups(5, guest)]).then(() => {
-//   console.log('well done guys');
-// });
-
-// Promise.race([doPromisePushups(5, ivan), doPromisePushups(5, guest)]).then((data) => {
-//   console.log(data);
-// }).catch((msg) => {
-//   console.log('msg: ', msg);
-// });
+// console.log(3);
+// console.log(3);
+// console.log(3);
+// console.log(3);
+// console.log(3);
+// console.log(3);
+// console.log(3);
+// console.log(3);
 
 
 
-// doPromisePushups(-10).then(
-//   () => {
-//     console.log('yes I did it');
-//   }).catch(() => {
-//     console.log(':(');
-//   });
 
-
-// doPromisePushups(0).then(() => {
-//   console.log('yes I did it');
-//   return doPromisePushups(5);
-// }).then(() => {
-//   console.log('hurray');
-// }).catch(() => {
-//   console.log(`something went wrong`);
-// }).finally(() => {
-//   console.log('anyway it was a good training');
-// });
-
-
-
-function createTimer(time, onFinish) {
+function createTimer() {
   const timerEl = document.createElement('h2');
-
+  let time = 60 * 5;
   const timerId = setInterval(() => {
-    const min = Math.floor(time / 60);
-    const sec = time - 60 * min;
-
-    timerEl.innerText = `${('0' + min).substr(-2)}:${('0' + sec).substr(-2)}`;
     time--;
-    if (time < 0) {
+    const min = Math.floor(time / 60);
+    const sec = time - min * 60;
+
+    timerEl.innerText = ('0' + min).substr(-2) + ':' + ('0' + sec).substr(-2);
+    if (time === 0) {
       clearInterval(timerId);
-      onFinish();
+      console.log('done');
     }
   }, 1000);
 
   document.body.append(timerEl);
 }
 
-// createTimer(10, () => console.log('first timer is off'));
-
-// createTimer(5, () => console.log('second timer is off'));
+// createTimer();
 
 
-function createPromiseTimer(time) {
+
+
+// 10 pushups
+// 5sec rest
+// 9 pushups
+// 5sec rest
+// 8 pushups
+// 5sec rest
+// 7 pushups
+// 5sec rest
+
+
+
+// function doPushups(n, onFinish) {
+//   const time = n * 200;
+//   setTimeout(() => {
+//     console.log(n + ' pushups done ' + new Date().toLocaleString());
+
+//     if (onFinish) onFinish();
+//   }, time)
+// }
+
+// function rest(onFinish) {
+//   setTimeout(() => {
+//     console.log('rest is done ' + new Date().toLocaleString());
+//     if (onFinish) onFinish();
+//   }, 2000);
+// }
+
+
+// doPushups(10, () => {
+//   rest(() => {
+//     doPushups(9, () => {
+//       rest(() => {
+//         doPushups(8, () => {
+//           rest(() => {
+//             doPushups(7, () => {
+//               console.log('YESSS I finished');
+//             });
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
+
+
+
+const test = new Promise((resolve) => {
+
+  setTimeout(() => {
+    // console.log('resolve promise');
+    resolve();
+  }, 4000);
+
+});
+
+// console.log('%c 🍺 test: ', 'font-size:20px;background-color: #7F2B82;color:#fff;', test);
+
+// test.then(() => {
+//   console.log('done');
+// });
+
+function rest() {
   return new Promise((resolve) => {
-    createTimer(time, resolve)
-  });
+    setTimeout(() => {
+      console.log('rest is done ' + new Date().toLocaleString());
+      resolve();
+    }, 2000);
+  })
 }
 
-// createPromiseTimer(5).then(() => console.log('promise timer is off'))
+
+
+function doPushups(n) {
+  if (n === 0) {
+    return Promise.resolve();
+  }
+  if (n > 1000) {
+    return Promise.reject();
+  }
+
+
+  return new Promise((resolve, reject) => {
+    let gaveUp = false;
+
+    const giveUpBtn = document.createElement('button');
+    giveUpBtn.innerText = 'stop';
+    giveUpBtn.addEventListener('click', () => {
+      console.log('I give up');
+      gaveUp = true;
+      reject();
+    });
+    document.body.append(giveUpBtn);
+
+    setTimeout(() => {
+      if (!gaveUp) {
+        console.log(n + ' pushups done ' + new Date().toLocaleString());
+      }
+
+      giveUpBtn.remove();
+      resolve();
+    }, n * 200)
+
+  })
+}
+
+
+// const user1Promise = doPushups(25);
+// const user2Promise = doPushups(10);
+
+// const promisesArr = [user1Promise, user2Promise];
+
+// Promise.all(promisesArr).then(() => {
+//   console.log('all users finished');
+// });
+
+// Promise.race(promisesArr).then(() => {
+//   console.log('someone finished users finished');
+// });
 
 
 
-async function train() {
-  await doPromisePushups(4, ivan);
-  console.log('yes I did it');
-  await doPromisePushups(5, ivan);
-  console.log('hurray');
-  await doPromisePushups(20, ivan);
-  console.log('enough for today');
 
-  // }).catch(() => {
-  //   console.log(`something went wrong`);
-  // }).finally(() => {
-  //   console.log('anyway it was a good training');
+
+
+
+
+
+
+
+// doPushups(10)
+//   .then(rest)
+//   .then(() => doPushups(9))
+//   .then(rest)
+//   .then(() => doPushups(8))
+//   .then(rest)
+//   .then(() => doPushups(7))
+//   .then(rest)
+//   .then(() => {
+//     console.log('yaay i finished');
+//   }).catch(() => {
+//     console.log('reject');
+//   });
+
+
+async function cursorTrain() {
+  await doPushups(10);
+  await rest();
+  await doPushups(9);
+  await rest();
+  await doPushups(8);
+  await rest();
+  await doPushups(7);
+  await rest();
+  console.log('Training is done');
+}
+
+
+// cursorTrain();
+
+
+async function groupTrain() {
+  try {
+    const user1Promise = doPushups(25);
+    const user2Promise = doPushups(10);
+    await user1Promise;
+    await user2Promise;
+    console.log('all users finished');
+  } catch {
+    console.log('dfsdf');
+  }
+  // Promise.all(promisesArr).then(() => {
   // });
 }
 
-// train();
+// groupTrain();
 
-async function groupTraining() {
-  // await Promise.all([doPromisePushups(5, ivan), doPromisePushups(5, guest)]);
-  const ivanPromise = doPromisePushups(5, ivan);
-  const guestPromise = doPromisePushups(5, guest);
-  await ivanPromise;
-  await guestPromise;
-  console.log('well done guys');
-}
-// groupTraining();
 
-async function competition() {
+
+
+const test2 = async () => {
   try {
-    const winner = await Promise.race([doPromisePushups(-20, ivan), doPromisePushups(5, guest)]);
-    console.log('winner: ', winner);
-  } catch (msg) {
-    console.log(msg);
+    await doPushups(30);
+  } catch {
+    console.log('failed');
+  } finally {
+    console.log('finally');
   }
 }
 
-competition();
+test2();
+
